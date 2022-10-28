@@ -5,7 +5,7 @@ class urinalsTest {
     @org.junit.jupiter.api.Test
     void goodString(){
         urinals urine = new urinals();
-        assertEquals(true,urine.goodString("Sai Venkat Naresh"),"====== Sai Venkat Naresh == TEST TWO EXECUTED =======");
+        assertEquals(true,urine.goodString("10001"),"====== Sai Venkat Naresh == TEST TWO EXECUTED =======");
 
 
     }
