@@ -1,3 +1,6 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class urinalsTest {
@@ -15,7 +18,9 @@ class urinalsTest {
     }
 
     @org.junit.jupiter.api.Test
-    void readFromFile() {
+    void readFromFile() throws IOException {
+        urinals urine = new urinals();
+        assertThrows(FileNotFoundException.class, () -> urine.readFromFile("abcde.txt") );
     }
 
     @org.junit.jupiter.api.Test
