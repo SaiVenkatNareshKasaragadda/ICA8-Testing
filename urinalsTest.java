@@ -21,7 +21,6 @@ class urinalsTest {
     @org.junit.jupiter.api.Test
     void readFromFileDNotExist() throws IOException {
         urinals urine = new urinals();
-        ArrayList<String> s = new ArrayList<>();
         assertThrows(FileNotFoundException.class ,()-> urine.readFromFile("C:/Users/svnka/ICA8/src/main/java/abcde.txt"));
     }
 
@@ -31,6 +30,19 @@ class urinalsTest {
         ArrayList<String> s = new ArrayList<>();
         assertEquals(s,urine.readFromFile("C:/Users/svnka/ICA8/src/main/java/input.txt"));
     }
+
+    @org.junit.jupiter.api.Test
+    void numberFormatException() throws IOException {
+        urinals urine = new urinals();
+        assertThrows(NumberFormatException.class ,()-> urine.getUrinalsCount("abc"));
+    }
+
+    @org.junit.jupiter.api.Test
+    void IOException() throws IOException {
+        urinals urine = new urinals();
+        assertThrows(IOException.class ,()-> urine.readFromFile("C:/Users/svnka/ICA8/main/java/abcde.txt"));
+    }
+
 
     @org.junit.jupiter.api.Test
     void writeToFile() {
