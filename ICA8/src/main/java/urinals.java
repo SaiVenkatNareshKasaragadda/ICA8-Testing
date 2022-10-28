@@ -1,89 +1,45 @@
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
-/*
-@author Sai Venkat Naresh Kasaragadda, skasara1@asu.edu
- */
-public class urinals {
+import static org.junit.jupiter.api.Assertions.*;
 
-        Boolean goodString( String str ) {  // checks to see if valid string
-            char[] arr = str.toCharArray();
-            for(char ch: arr){
-                if(!Character.isDigit(ch)){
-                    return false;
-                }
-            }
-            return true;
-        }
-        public static int getUrinalsCount(String s){
-        int[] intArray = new int[s.length()];
-        int res =0;
-        int n = s.length();
-        String[] eachInt = s.split("");
-        for(int i =0;i<n;i++) {
-            intArray[i]= Integer.parseInt(eachInt[i]);
-        }
-        for(int i=0;i< n;i++) {
-            if(intArray[i]==0){
-                if(i==0){
-                    if(intArray[i+1]==0 ){
-                    res++;
-                    intArray[i]=1;
-                }}
-                else if(i==n-1){
-                    if(intArray[i-1]==0){
-                    res++;
-                    intArray[i]=1;
-                }}
-                else if(intArray[i-1]==0){
-                    if(intArray[i+1]==0){
-                    res++;
-                    intArray[i]=1;
-                }}
-            }
-        }
-        for(int i=0;i< n-1;i++) {
-            if(intArray[i]==1){
-                if(intArray[i+1]==1){
-                    res = -1;
-                }
-            }
-        }
-        return res;
+class urinalsTest {
+
+    @org.junit.jupiter.api.Test
+    void goodString(){
+        urinals urine = new urinals();
+        assertEquals(true,urine.goodString("10001"),"====== Sai Venkat Naresh == TEST TWO EXECUTED =======");
+
+
     }
 
-    public static ArrayList<Integer> readFromFile(String path) throws IOException {
-        ArrayList<String> inputs = new ArrayList<>();
-        File inputFile = new File(path);
-        FileReader fis = new FileReader(inputFile);
-        BufferedReader br = new BufferedReader(fis);
-        String s;
-        while((s=br.readLine())!=null) {
-            inputs.add(s);
-            System.out.print("Input : "+ s);
-        }
-        ArrayList<Integer> outputs = new ArrayList<>();
-        for(String input : inputs){
-            outputs.add(getUrinalsCount(input));
-            System.out.print("Output : "+ outputs);
-        }
-        return outputs;
+    @org.junit.jupiter.api.Test
+    void getUrinalsCount() {
     }
 
-    public static void writeToFile(ArrayList<Integer> outputs) throws IOException{
-        
+    @org.junit.jupiter.api.Test
+    void readFromFileDNotExist() throws IOException {
+        urinals urine = new urinals();
+        ArrayList<String> s = new ArrayList<>();
+        assertThrows(FileNotFoundException.class ,()-> urine.readFromFile("C:/Users/svnka/ICA8/src/main/java/abcde.txt"));
     }
 
+    @org.junit.jupiter.api.Test
+    void readFromFileEmptyFile() throws IOException {
+        urinals urine = new urinals();
+        ArrayList<String> s = new ArrayList<>();
+        assertEquals(s,urine.readFromFile("C:/Users/svnka/ICA8/src/main/java/input.txt"));
+    }
 
+    @org.junit.jupiter.api.Test
+    void numberFormatException() throws IOException {
+        urinals urine = new urinals();
+        assertThrows(NumberFormatException.class ,()-> urine.getUrinalsCount("abc"));
+    }
 
+    @org.junit.jupiter.api.Test
+    void writeToFile() {
 
-    public static void main(String args[]) throws IOException {
-        ArrayList<Integer> output = new ArrayList<>();
-        try{
-            output = readFromFile("input.txt");
-            writeToFile(output);
-        }catch(Exception e) {
-            e.printStackTrace();
-        }
     }
 }
