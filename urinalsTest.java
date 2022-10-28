@@ -15,20 +15,22 @@ class urinalsTest {
     }
 
     @org.junit.jupiter.api.Test
-    void getUrinalsCount() {
+    void getUrinalsCountNumbers() {
+        urinals urine = new urinals();
+        assertThrows(NumberFormatException.class,()->urine.getUrinalsCount("abc"));
     }
 
     @org.junit.jupiter.api.Test
     void readFromFileDNotExist() throws IOException {
         urinals urine = new urinals();
-        assertThrows(FileNotFoundException.class ,()-> urine.readFromFile("C:/Users/svnka/ICA8/src/main/java/abcde.txt"));
+        assertThrows(FileNotFoundException.class ,()-> urine.readFromFile("C:/Users/svnka/ICA8/src/main/java/abcde.dat"));
     }
 
     @org.junit.jupiter.api.Test
     void readFromFileEmptyFile() throws IOException {
         urinals urine = new urinals();
         ArrayList<String> s = new ArrayList<>();
-        assertEquals(s,urine.readFromFile("C:/Users/svnka/ICA8/src/main/java/input.txt"));
+        assertEquals(s,urine.readFromFile("C:/Users/svnka/ICA8/src/main/java/input.dat"));
     }
 
     @org.junit.jupiter.api.Test
@@ -40,7 +42,7 @@ class urinalsTest {
     @org.junit.jupiter.api.Test
     void IOException() throws IOException {
         urinals urine = new urinals();
-        assertThrows(IOException.class ,()-> urine.readFromFile("C:/Users/svnka/ICA8/main/java/abcde.txt"));
+        assertThrows(IOException.class ,()-> urine.readFromFile("C:/Users/svnka/ICA8/main/java/inp.txt"));
     }
 
 
